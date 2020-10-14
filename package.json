@@ -23,7 +23,10 @@
   "author": "DiamondYuan",
   "license": "GPL-2.0-or-later",
   "dependencies": {
+    "@azure/storage-blob": "^12.2.1",
     "@shihengtech/hooks": "^0.0.7",
+    "@types/spark-md5": "^3.0.2",
+    "@types/uuid": "^8.3.0",
     "@web-clipper/area-selector": "^0.1.1",
     "@web-clipper/chrome-promise": "^0.1.2",
     "@web-clipper/extensions": "^0.0.17",
@@ -61,9 +64,11 @@
     "remark": "^11.0.2",
     "short-uuid": "^3.1.1",
     "showdown": "^1.9.0",
+    "spark-md5": "^3.0.1",
     "tldjs": "^2.3.1",
     "typedi": "^0.8.0",
-    "umi-request": "^1.2.15"
+    "umi-request": "^1.2.15",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@diamondyuan/eslint-config-react-typescript": "^7.0.1",
