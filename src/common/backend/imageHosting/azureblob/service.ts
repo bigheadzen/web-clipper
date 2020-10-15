@@ -45,7 +45,10 @@ export default class AzureBlobImageHostingService implements ImageHostingService
 
     const res = await axios.get(url, { responseType: 'blob' });
     let blob: Blob = res.data;
-    if (blob.type === 'image/webp') {
+
+    console.log(`Get image done. type: ${blob.type}, size: ${blob.size}`);
+
+    if (blob.type === 'image/webp' || blob.type === 'application/octet-stream') {
       blob = blob.slice(0, blob.size, 'image/jpeg');
     }
     return this.uploadBlob(pageUrl, url, blob);
@@ -72,6 +75,7 @@ export default class AzureBlobImageHostingService implements ImageHostingService
     const blobName = `${host}/${encodeURIComponent(path)}/${fileName}`;
 
     const client = container.getBlockBlobClient(blobName);
+    console.log(`Will upload blob: ${blobName}`);
     const rsp = await client.upload(blob, blob.size, {
       blobHTTPHeaders: {
         blobContentType: blob.type,
