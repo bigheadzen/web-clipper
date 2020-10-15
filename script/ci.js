@@ -44,7 +44,8 @@ function pack({ targetBrowser, beta }) {
 (async () => {
   const beta = process.env.BETA === 'true';
   console.log('beta:', beta);
-  const browserList = ['Firefox', 'Chrome'];
+  //const browserList = ['Firefox', 'Chrome'];
+  const browserList = ['Chrome'];
   for (const browser of browserList) {
     console.log(`Start Build ${browser} Version`);
     await build({ targetBrowser: browser });
