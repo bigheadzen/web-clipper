@@ -143,6 +143,8 @@ export default class AzureBlobImageHostingService implements ImageHostingService
         return 'bmp';
       case 'image/gif':
         return 'gif';
+      case 'image/svg+xml':
+        return 'svg';
       default:
         throw new Error(`Unsupport image type: ${blob.type}`);
     }
