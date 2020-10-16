@@ -132,14 +132,16 @@ export default class NotionDocumentService implements DocumentService {
   }: CreateDocumentRequest): Promise<CompleteStatus> => {
     let fileName = `${title}.md`;
 
+    const contentText = content.replace(/```.*/g, '```');
+
     const repository = this.repositories.find(o => o.id === repositoryId);
     if (!repository) {
       throw new Error('Illegal repository');
     }
 
-    const documentId = await this.createEmptyFile(repository, content);
+    const documentId = await this.createEmptyFile(repository, contentText);
     const fileUrl = await this.getFileUrl(fileName);
-    await axios.put(fileUrl.signedPutUrl, `${content}`, {
+    await axios.put(fileUrl.signedPutUrl, `${contentText}`, {
       headers: {
         'Content-Type': 'text/markdown',
       },
