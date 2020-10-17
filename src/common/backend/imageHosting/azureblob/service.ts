@@ -72,7 +72,8 @@ export default class AzureBlobImageHostingService implements ImageHostingService
     path = path.replace(re, '_SEP_');
 
     const fileName = await this.getImageFileName(imageUrl, blob);
-    const blobName = `${host}/${encodeURIComponent(path)}/${fileName}`;
+    const blobName = `${host}/${path}/${fileName}`;
+    const blobNameUri = `${host}/${encodeURIComponent(path)}/${encodeURIComponent(fileName)}`;
 
     const client = container.getBlockBlobClient(blobName);
     console.log(`Will upload blob: ${blobName}`);
@@ -86,7 +87,7 @@ export default class AzureBlobImageHostingService implements ImageHostingService
       },
     });
 
-    const resultUrl = `${this.config.endpoint}/${this.config.container}/${blobName}`;
+    const resultUrl = `${this.config.endpoint}/${this.config.container}/${blobNameUri}`;
     console.log(
       `Upload block blob ${blobName} successfully. Url: ${resultUrl}, requestId: ${rsp.requestId}`
     );
