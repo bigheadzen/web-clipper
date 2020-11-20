@@ -43,8 +43,17 @@ export default class AzureBlobImageHostingService implements ImageHostingService
       `Upload image url: ${url}, endpoint: ${this.config.endpoint}, container: ${this.config.container}, page: ${pageUrl}`
     );
 
-    const res = await axios.get(url, { responseType: 'blob' });
-    let blob: Blob = res.data;
+    let blob: Blob;
+    try {
+      const res = await axios.get(url, { responseType: 'blob' });
+      blob = res.data;
+    } catch (_e) {
+      let e: Error = _e;
+      const proxyUrl = `https://fileproxy.junguo.fun/download?url=${encodeURIComponent(url)}`;
+      console.log(`Failed to download ${url}, error: ${e.message}, try use proxy: ${proxyUrl}.`);
+      const res = await axios.get(proxyUrl, { responseType: 'blob' });
+      blob = res.data;
+    }
 
     console.log(`Get image done. type: ${blob.type}, size: ${blob.size}`);
 
