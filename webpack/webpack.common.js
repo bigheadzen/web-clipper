@@ -23,7 +23,8 @@ let manifestExtra = {
     'https://resource.clipper.website/*',
     'https://mmbiz.qpic.cn/*',
     "https://www.sxotu.com/*",
-    "https://*.cloudfront.net/*"
+    "https://*.cloudfront.net/*",
+    "https://*.bytedance.net/*"
   ],
   optional_permissions: ['cookies', '<all_urls>', 'webRequest', 'webRequestBlocking'],
 };
