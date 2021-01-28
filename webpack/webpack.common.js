@@ -24,7 +24,8 @@ let manifestExtra = {
     'https://mmbiz.qpic.cn/*',
     "https://www.sxotu.com/*",
     "https://*.cloudfront.net/*",
-    "https://*.bytedance.net/*"
+    "https://*.bytedance.net/*",
+    "https://www.youimg.xyz/*"
   ],
   optional_permissions: ['cookies', '<all_urls>', 'webRequest', 'webRequestBlocking'],
 };
